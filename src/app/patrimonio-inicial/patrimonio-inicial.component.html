@@ -3,10 +3,13 @@
 <div>
     <input pInputText type="text" placeholder="Corretora" [(ngModel)]="novoLcto.Corretora" class="p-mr-2">
     <input pInputText type="text" placeholder="Ticker" [(ngModel)]="novoLcto.ticker" class="p-mr-2">
-    <p-inputNumber placeholder="Quantidade" [minFractionDigits]="2" [(ngModel)]="novoLcto.quantidade" class="p-mr-2">
+
+    <p-inputNumber placeholder="Quantidade"  [(ngModel)]="novoLcto.quantidade" class="p-mr-2">
     </p-inputNumber>
+
     <p-inputNumber placeholder="valorTotal" [minFractionDigits]="2" [(ngModel)]="novoLcto.valorTotal" class="p-mr-2">
     </p-inputNumber>
+      
     <p-button class="p-mr-2" (click)='insertLcto()'>Adicionar</p-button>
     <p-button (click)="limparNovoLcto()">Limpar</p-button>
 </div>
@@ -53,7 +56,7 @@
                     <td pEditableColumn>
                         <p-cellEditor>
                             <ng-template pTemplate="input">
-                                <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.quantidade">
+                                <p-inputNumber  [(ngModel)]="lcto.quantidade">
 
                                 </p-inputNumber>
                             </ng-template>
@@ -69,12 +72,12 @@
                                 </p-inputNumber>
                             </ng-template>
                             <ng-template pTemplate="output">
-                                {{lcto.valorTotal}}
+                                {{lcto.valorTotal | currency}}
                             </ng-template>
                         </p-cellEditor>
                     </td>
                     <td>
-                        {{lcto.precoMedio}}
+                        {{calcPrecoMedio(lcto) | currency}}
                     </td>
 
                     <td>

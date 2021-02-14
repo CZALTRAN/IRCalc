@@ -19,9 +19,14 @@ import { NotasComponent } from './notas/notas.component';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { MenuModule } from 'primeng/menu';
-import {MenubarModule} from 'primeng/menubar';
-import {InputTextModule} from 'primeng/inputtext';
+import { MenubarModule } from 'primeng/menubar';
+import { InputTextModule } from 'primeng/inputtext';
 import { PatrimonioInicialComponent } from './patrimonio-inicial/patrimonio-inicial.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { BensDireitosComponent } from './bens-direitos/bens-direitos.component';
+import { RendimentosComponent } from './rendimentos/rendimentos.component';
+import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade/operacoes-comuns-dtrade.component';
+import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-fundos-imob.component';
 
 
 @NgModule({
@@ -32,7 +37,11 @@ import { PatrimonioInicialComponent } from './patrimonio-inicial/patrimonio-inic
     MenuComponent,
     AtivosComponent,
     NotasComponent,
-    PatrimonioInicialComponent
+    PatrimonioInicialComponent,
+    BensDireitosComponent,
+    RendimentosComponent,
+    OperacoesComunsDTradeComponent,
+    OperacoesFundosImobComponent
   ],
   imports: [
     BrowserModule,
@@ -44,8 +53,10 @@ import { PatrimonioInicialComponent } from './patrimonio-inicial/patrimonio-inic
     FormsModule,
     MenuModule,
     MenubarModule,
+    InputNumberModule,
     InputTextModule,
     AngularFireModule.initializeApp(environment.firebase)
+
 
   ],
   providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],

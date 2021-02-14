@@ -22,9 +22,10 @@ export class BigfServiceService {
 
   patrimonioInicialPath:string;
 
-  insert(table, data) {
-    this.dataBase.list(this.basePath+table).push(data)
+  insert(table, data:AbstractModel) {
+    return this.dataBase.list(this.basePath+table).push(data)
       .then((result: any) => {
+        data.key = result.key
         console.log(result.key);
       });
   }

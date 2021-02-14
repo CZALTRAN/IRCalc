@@ -32,8 +32,8 @@ export class PatrimonioInicialComponent implements OnInit {
       console.log("Ticker invalido");
     }
     else {
-      this.novoLcto.key = this.novoLcto.ticker;
-      this.bigfService.updateSet(BigfServiceService.ATIVOS, this.novoLcto).then(res => {
+      this.novoLcto.ticker = this.novoLcto.ticker.toUpperCase();
+      this.bigfService.insert(BigfServiceService.PATRIMONIO_INICIAL, this.novoLcto).then(res => {
         this.limparNovoLcto();
       });
     }
@@ -46,7 +46,9 @@ export class PatrimonioInicialComponent implements OnInit {
   }
 
   salvarTabela() {
-
+    this.patrimonioLctos.forEach(element => {
+      element.ticker = element.ticker.toUpperCase();
+    });
     this.bigfService.updateObjsect(BigfServiceService.PATRIMONIO_INICIAL, this.patrimonioLctos);
   }
 
@@ -68,9 +70,13 @@ export class PatrimonioInicialComponent implements OnInit {
     return {
       Corretora: '',
       ticker: '',
-      quantidade: 0,
-      valorTotal: 0
     };
+  }
+  calcPrecoMedio(lcto: PatrimonioLcto) {
+    if (lcto.quantidade != undefined && lcto.quantidade != 0) {
+      return (lcto.valorTotal ?? 0) / lcto.quantidade
+    }
+    return 0;
   }
 
 }
