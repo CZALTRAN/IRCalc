@@ -1,0 +1,86 @@
+<app-menu></app-menu>
+
+<div>
+    <input pInputText type="text" placeholder="Corretora" [(ngModel)]="novoLcto.Corretora" class="p-mr-2">
+    <input pInputText type="text" placeholder="Ticker" [(ngModel)]="novoLcto.ticker" class="p-mr-2">
+    <p-inputNumber placeholder="Quantidade" [minFractionDigits]="2" [(ngModel)]="novoLcto.quantidade" class="p-mr-2">
+    </p-inputNumber>
+    <p-inputNumber placeholder="valorTotal" [minFractionDigits]="2" [(ngModel)]="novoLcto.valorTotal" class="p-mr-2">
+    </p-inputNumber>
+    <p-button class="p-mr-2" (click)='insertLcto()'>Adicionar</p-button>
+    <p-button (click)="limparNovoLcto()">Limpar</p-button>
+</div>
+<hr>
+<div>
+    <div>
+        <p-button (click)='salvarTabela()' class="p-mr-2">Salvar</p-button>
+        <p-button (click)='restaurarTabela()'>Cancelar</p-button>
+    </div>
+    <div class="card">
+        <p-table [value]="patrimonioLctos" dataKey="key">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Corretora</th>
+                    <th>ticker</th>
+                    <th>quantidade</th>
+                    <th>valorTotal</th>
+                    <th>precoMedio</th>
+                    <th>Remover</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-lcto>
+                <tr>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="lcto.Corretora">
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{lcto.Corretora}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="lcto.ticker" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{lcto.ticker}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.quantidade">
+
+                                </p-inputNumber>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{lcto.quantidade}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                        <p-cellEditor>
+                            <ng-template pTemplate="input">
+                                <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorTotal">
+                                </p-inputNumber>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{lcto.valorTotal}}
+                            </ng-template>
+                        </p-cellEditor>
+                    </td>
+                    <td>
+                        {{lcto.precoMedio}}
+                    </td>
+
+                    <td>
+                        <p-button (click)='removerLcto(lcto.key)'>X</p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
