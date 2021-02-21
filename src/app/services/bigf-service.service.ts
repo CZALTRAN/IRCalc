@@ -8,7 +8,8 @@ import { LoginService } from './login.service';
 })
 export class BigfServiceService {
   public static ATIVOS = 'ativos';
-  public static PATRIMONIO_INICIAL = 'patrimonioInic'
+  public static PATRIMONIO_INICIAL = 'patrimonioInic';
+  public static NOTAS_CORRETAGEM = 'notasCorretagem';
 
   private static baseUrl = '//'
   userUid:string;
@@ -61,6 +62,16 @@ export class BigfServiceService {
           return changes.map(c => ({ key: c.payload.key, ... (c.payload as any).val() }));
         })
       );
+  }
+
+  getObject(table, key:string){
+    this.dataBase.object(this.basePath+table+`/${key}`)
+    .snapshotChanges()
+    .pipe(
+      map(changes=>{
+        return {key:changes.payload.key, ...  (changes.payload as any).val()};
+      })
+    );
   }
 
   delete(table, key: string) {

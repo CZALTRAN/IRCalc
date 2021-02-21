@@ -27,6 +27,7 @@ import { BensDireitosComponent } from './bens-direitos/bens-direitos.component';
 import { RendimentosComponent } from './rendimentos/rendimentos.component';
 import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade/operacoes-comuns-dtrade.component';
 import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-fundos-imob.component';
+import { EditNotaComponent } from './edit-nota/edit-nota.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-
     BensDireitosComponent,
     RendimentosComponent,
     OperacoesComunsDTradeComponent,
-    OperacoesFundosImobComponent
+    OperacoesFundosImobComponent,
+    EditNotaComponent
   ],
   imports: [
     BrowserModule,

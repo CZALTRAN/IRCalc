@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AtivosComponent } from './ativos/ativos.component';
 import { BensDireitosComponent } from './bens-direitos/bens-direitos.component';
+import { EditNotaComponent } from './edit-nota/edit-nota.component';
 import { AuthGuard } from './guard/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'tickers', component:AtivosComponent, canActivate: [AuthGuard]},
   {path:'patrimonioInicial', component:PatrimonioInicialComponent, canActivate: [AuthGuard]},
   {path:'notas', component:NotasComponent, canActivate: [AuthGuard]},
+  {path:'insNotas/:uid', component:EditNotaComponent, canActivate: [AuthGuard]},
   {path:'bensDireitos', component:BensDireitosComponent, canActivate: [AuthGuard]},
   {path:'operacoesComuns', component:OperacoesComunsDTradeComponent, canActivate: [AuthGuard]},
   {path:'operacoesFii', component:OperacoesFundosImobComponent, canActivate: [AuthGuard]},
