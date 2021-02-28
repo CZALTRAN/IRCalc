@@ -1,17 +1,17 @@
 <app-menu></app-menu>
 
 <div>
-    <p-calendar [(ngModel)]="notaCorretagem.data" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon"
-        class="p-mr-2"></p-calendar>
+    <p-calendar [(ngModel)]="dataSelecionada" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon" class="p-mr-2">
+    </p-calendar>
     <input pInputText type="text" [(ngModel)]="notaCorretagem.nomeCorretora" placeholder="Corretora" class="p-mr-2"
-        (ngModelChange)="calcularDados()">
+        (ngModelChange)="calcularDados(false)">
     <input pInputText type="text" [(ngModel)]="notaCorretagem.coud" maxlength="1" placeholder="C/D" class="p-mr-2"
-        (ngModelChange)="calcularDados()">
+        (ngModelChange)="calcularDados(false)">
     <p-inputNumber placeholder="Liquido final" [maxFractionDigits]="2" [minFractionDigits]="2"
-        [(ngModel)]="notaCorretagem.liquidoFinal" class="p-mr-2" (ngModelChange)="calcularDados()">
+        [(ngModel)]="notaCorretagem.liquidoFinal" class="p-mr-2" (ngModelChange)="calcularDados(false)">
     </p-inputNumber>
     <p-inputNumber placeholder="Quantidade Operacoes" [(ngModel)]="quantidadeOperacoes"
-        (ngModelChange)="calcularDados()">
+        (ngModelChange)="calcularDados(true)">
     </p-inputNumber>
 </div>
 <div class="card">
@@ -31,7 +31,8 @@
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="lcto.couv" maxlength="1">
+                            <input pInputText type="text" [(ngModel)]="lcto.couv" maxlength="1"
+                                (ngModelChange)="calcularDados(true)">
                         </ng-template>
                         <ng-template pTemplate="output">
                             {{lcto.couv}}
@@ -51,7 +52,7 @@
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <p-inputNumber [(ngModel)]="lcto.quantidade">
+                            <p-inputNumber [(ngModel)]="lcto.quantidade" (ngModelChange)="calcularDados(true, lcto)">
 
                             </p-inputNumber>
                         </ng-template>
@@ -60,21 +61,14 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td pEditableColumn>
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorUnitario">
-                            </p-inputNumber>
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{lcto.valorUnitario | currency}}
-                        </ng-template>
-                    </p-cellEditor>
+                <td>
+                    {{lcto.valorUnitario | currency}}
                 </td>
                 <td pEditableColumn>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorTotal">
+                            <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorTotal"
+                                (ngModelChange)="calcularDados(true, lcto)">
                             </p-inputNumber>
                         </ng-template>
                         <ng-template pTemplate="output">

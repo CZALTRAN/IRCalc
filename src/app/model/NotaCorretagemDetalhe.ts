@@ -2,7 +2,7 @@ export interface NotaCorretagemDetalhe
 {
     couv?:string;
     ticker?:string;
-    quantidade?:string;
+    quantidade?:number;
     valorUnitario?:number;
     valorTotal?:number;
 }

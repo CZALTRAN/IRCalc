@@ -17,7 +17,7 @@ export interface NotaCorretagem extends AbstractModel{
     liquidoFinal?:number;
     coud:string;
 
-    data?:Date;
+    dataMovimentacao:string;
 
     transacoes:NotaCorretagemDetalhe[]
 }

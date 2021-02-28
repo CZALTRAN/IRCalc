@@ -29,6 +29,9 @@ import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade/operac
 import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-fundos-imob.component';
 import { EditNotaComponent } from './edit-nota/edit-nota.component';
 import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
+
 
 
 @NgModule({
@@ -59,11 +62,12 @@ import { CalendarModule } from 'primeng/calendar';
     InputNumberModule,
     InputTextModule,
     CalendarModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase)
 
 
   ],
-  providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth],
+  providers: [AuthGuard, LoginService, AngularFireModule, AngularFireAuth, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

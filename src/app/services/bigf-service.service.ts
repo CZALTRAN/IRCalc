@@ -14,6 +14,7 @@ export class BigfServiceService {
   private static baseUrl = '//'
   userUid:string;
   basePath:string;
+  
 
   constructor(private dataBase: AngularFireDatabase) { 
     this.userUid = localStorage[LoginService.userUidKey];
@@ -69,7 +70,6 @@ export class BigfServiceService {
     .snapshotChanges()
     .pipe(
       map(changes=>{
-        debugger
         return {key:changes.payload.key, ...  (changes.payload as any).val()};
       })
     );
