@@ -28,6 +28,7 @@ import { RendimentosComponent } from './rendimentos/rendimentos.component';
 import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade/operacoes-comuns-dtrade.component';
 import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-fundos-imob.component';
 import { EditNotaComponent } from './edit-nota/edit-nota.component';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { EditNotaComponent } from './edit-nota/edit-nota.component';
     MenubarModule,
     InputNumberModule,
     InputTextModule,
+    CalendarModule,
     AngularFireModule.initializeApp(environment.firebase)
 
 

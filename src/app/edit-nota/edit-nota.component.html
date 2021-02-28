@@ -1,96 +1,111 @@
 <app-menu></app-menu>
 
 <div>
-    <input pInputText type="text" [(ngModel)]="notaCorretagem.nomeCorretora" placeholder="Corretora" class="p-mr-2">
-    <p-inputNumber placeholder="Quantidade"  [(ngModel)]="notaCorretagem.liquidoFinal" >
+    <p-calendar [(ngModel)]="notaCorretagem.data" dateFormat="dd/mm/yy" [showIcon]="true" inputId="icon"
+        class="p-mr-2"></p-calendar>
+    <input pInputText type="text" [(ngModel)]="notaCorretagem.nomeCorretora" placeholder="Corretora" class="p-mr-2"
+        (ngModelChange)="calcularDados()">
+    <input pInputText type="text" [(ngModel)]="notaCorretagem.coud" maxlength="1" placeholder="C/D" class="p-mr-2"
+        (ngModelChange)="calcularDados()">
+    <p-inputNumber placeholder="Liquido final" [maxFractionDigits]="2" [minFractionDigits]="2"
+        [(ngModel)]="notaCorretagem.liquidoFinal" class="p-mr-2" (ngModelChange)="calcularDados()">
     </p-inputNumber>
-    <p-inputNumber placeholder="Quantidade Operacoes"  [(ngModel)]="quantidadeOperacoes" >
+    <p-inputNumber placeholder="Quantidade Operacoes" [(ngModel)]="quantidadeOperacoes"
+        (ngModelChange)="calcularDados()">
     </p-inputNumber>
 </div>
-<div>
-    <div class="card">
-        <p-table [value]="notaCorretagem.trasacoes" dataKey="key">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th>C/V</th>
-                    <th>Ticker</th>
-                    <th>Quantidade</th>
-                    <th>Valor Un.</th>
-                    <th>Valor Total</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-lcto>
-                <tr>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="lcto.couv" maxlength="1">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{lcto.Corretora}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="lcto.ticker" required>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{lcto.ticker}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <p-inputNumber  [(ngModel)]="lcto.quantidade">
+<div class="card">
+    <p-table [value]="notaCorretagem.transacoes" dataKey="key">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>C/V</th>
+                <th>Ticker</th>
+                <th>Quantidade</th>
+                <th>Valor Un.</th>
+                <th>Valor Total</th>
+                <th>Ações</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lcto let-i="rowIndex">
+            <tr>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="lcto.couv" maxlength="1">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{lcto.couv}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="lcto.ticker" required>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{lcto.ticker}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-inputNumber [(ngModel)]="lcto.quantidade">
 
-                                </p-inputNumber>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{lcto.quantidade}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorUnitario">
-                                </p-inputNumber>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{lcto.valorTotal | currency}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorTotal">
-                                </p-inputNumber>
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{lcto.valorTotal | currency}}
-                            </ng-template>
-                        </p-cellEditor>
-                    </td>
-                    
-                    <td>
-                        <p-button (click)='removerLcto(lcto.key)'>X</p-button>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+                            </p-inputNumber>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{lcto.quantidade}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorUnitario">
+                            </p-inputNumber>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{lcto.valorUnitario | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <p-inputNumber [minFractionDigits]="2" [(ngModel)]="lcto.valorTotal">
+                            </p-inputNumber>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{lcto.valorTotal | currency}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td>
+                    <p-button (click)='removerLcto(i)'>X</p-button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
 </div>
+
 <div>
-    <p-inputNumber placeholder="Compras"  [(ngModel)]="notaCorretagem.totalCompra" class="p-mr-2" readonly = true>
+    <p-inputNumber placeholder="Compras" [(ngModel)]="notaCorretagem.totalCompra" class="p-mr-2" readonly=true>
     </p-inputNumber>
-    <p-inputNumber placeholder="Vendas"  [(ngModel)]="notaCorretagem.totalVenda" class="p-mr-2" readonly = true>
+    <p-inputNumber placeholder="Vendas" [(ngModel)]="notaCorretagem.totalVenda" class="p-mr-2" readonly=true>
     </p-inputNumber>
-    <p-inputNumber placeholder="Sub Total"  [(ngModel)]="notaCorretagem.liquidoOper" class="p-mr-2" readonly = true>
+    <p-inputNumber placeholder="Sub Total" [(ngModel)]="notaCorretagem.liquidoOper" class="p-mr-2" readonly=true>
     </p-inputNumber>
-    <p-inputNumber placeholder="Taxas"  [(ngModel)]="notaCorretagem.totalTaxas" readonly = true readonly = true>
+    <p-inputNumber placeholder="Taxas" [(ngModel)]="notaCorretagem.totalTaxas" readonly=true readonly=true>
     </p-inputNumber>
 
+</div>
+
+<div>
+    <div>
+        <p-button (click)='salvarNota()' class="p-mr-2">Salvar</p-button>
+        <p-button (click)='cancelar()'>Cancelar</p-button>
+    </div>
 </div>

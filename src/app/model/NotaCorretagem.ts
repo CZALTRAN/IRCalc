@@ -5,16 +5,19 @@ export interface NotaCorretagem extends AbstractModel{
     nomeCorretora:string;
     
     
-    totalCompra:number;
-    totalVenda:number;
+    totalCompra?:number;
+    totalVenda?:number;
     
     //totalVenda - totalCompra
-    liquidoOper:number;
+    liquidoOper?:number;
     
     //liquidoFinal - liquidoOper
-    totalTaxas:number;
+    totalTaxas?:number;
 
-    liquidoFinal:number;
+    liquidoFinal?:number;
+    coud:string;
 
-    trasacoes:NotaCorretagemDetalhe[]
+    data?:Date;
+
+    transacoes:NotaCorretagemDetalhe[]
 }

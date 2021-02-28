@@ -14,7 +14,6 @@ export class NotasComponent implements OnInit {
 
 
   notas: NotaCorretagem[]
-  selectNotas:NotaCorretagem;
   constructor(
     private bigfService: BigfServiceService,
     public afAuth: AngularFireAuth,
@@ -40,8 +39,11 @@ export class NotasComponent implements OnInit {
     this.router.navigate(['/insNotas', 'novo']);
 
   }
-  editNota() {
-    this.router.navigate(['/insNotas', this.selectNotas?.key]);
+  editarNota(key) {
+    this.router.navigate(['/insNotas', key]);
+  }
+  removerNota(key) {
+    this.bigfService.delete(BigfServiceService.NOTAS_CORRETAGEM, key);
   }
 
 }

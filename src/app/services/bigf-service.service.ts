@@ -65,10 +65,11 @@ export class BigfServiceService {
   }
 
   getObject(table, key:string){
-    this.dataBase.object(this.basePath+table+`/${key}`)
+    return this.dataBase.object(this.basePath+table+`/${key}`)
     .snapshotChanges()
     .pipe(
       map(changes=>{
+        debugger
         return {key:changes.payload.key, ...  (changes.payload as any).val()};
       })
     );
