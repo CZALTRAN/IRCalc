@@ -21,9 +21,8 @@ export class MenuComponent implements OnInit {
       { label: 'Tickers' , routerLink:['/tickers']},
       { label: 'Patrimonio Inicial', routerLink:['/patrimonioInicial'] },
       { label: 'Notas de Corretagens', routerLink:['/notas'] },
-
-      { label: 'Rendimentos ', routerLink:['/rendimentos'] },
       { label: 'Bens e Direitos', routerLink:['/bensDireitos'] },
+      { label: 'Rendimentos ', routerLink:['/rendimentos'] },
       { label: 'Operacoes Comuns', routerLink:['/operacoesComuns'] },
       { label: 'Operacoes FII', routerLink:['/operacoesFii'] }
     ];

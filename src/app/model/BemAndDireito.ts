@@ -1,28 +1,28 @@
 import { AbstractModel } from "./AbstractModel";
 
+export enum TipoNoIR{
+    ACOES31 = "ACOES31",
+    FII73 = "FII73",
+    ETF74 = "ETF74"
+}
 
 export interface BemAndDireito  extends AbstractModel{
     //dados inseridos
-    Corretora: String;
-    ticker: number;
+    corretora: string;
+    ticker: string;
     quantidadeInicial: number;
     valorTotalInicial: number;
 
     //dados calculados
-    precoMedioInicial: number;
 
     quantidadeFinal: number;
     valorTotalFinal: number;
-    precoMedioFinal: number;
 
     //dados que podem ser cruzados
     nomeEmpresa: string;
     CNPJ: string;
 
-    /*
-    31 - Ações
-    73 - Fundo de investimento Imobiliario
-    */
-    tipoNoIr:number;
+
+    tipoNoIr?:TipoNoIR;
 
 } 

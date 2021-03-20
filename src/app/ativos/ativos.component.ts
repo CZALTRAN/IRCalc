@@ -68,7 +68,7 @@ export class AtivosComponent implements OnInit {
       ticker: '',
       nome: '',
       cnpj: '',
-      razaoSocial: ''
+      razaoSocial: '',
     };
   }
 

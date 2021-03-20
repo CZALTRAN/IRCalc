@@ -1,2 +1,29 @@
 <app-menu></app-menu>
-<p>bens-direitos works!</p>
+<p-table [value]="bens" dataKey="key">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Corretora</th>
+            <th>Ticker</th>
+            <th>Qtd. Inicial</th>
+            <th>Valor Inicial</th>
+            <th>Qtd. Final</th>
+            <th>Valor Final</th>
+            <th>Empresa</th>
+            <th>CNPJ</th>
+            <th>tipo</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-bem let-i="rowIndex">
+        <tr>
+            <th>{{bem.corretora}}</th>
+            <th>{{bem.ticker}}</th>
+            <th>{{bem.quantidadeInicial}}</th>
+            <th>{{bem.valorTotalInicial}}</th>
+            <th>{{bem.quantidadeFinal}}</th>
+            <th>{{bem.valorTotalFinal}}</th>
+            <th>{{bem.nomeEmpresa}}</th>
+            <th>{{bem.CNPJ}}</th>
+            <th>{{bem.tipoNoIr}}</th>
+        </tr>
+    </ng-template>
+</p-table>
