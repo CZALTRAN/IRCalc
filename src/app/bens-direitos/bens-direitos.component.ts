@@ -1,3 +1,4 @@
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
@@ -28,10 +29,10 @@ export class BensDireitosComponent implements OnInit, OnDestroy {
       if (user) {
         this.bensDirService.calcularBensDireitos();
       }
-    })
+    });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subBens.unsubscribe();
   }
 

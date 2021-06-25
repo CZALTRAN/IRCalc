@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { NotaCorretagem } from '../model/NotaCorretagem';
-import { BigfServiceService } from '../services/bigf-service.service';
+import {Component, OnInit} from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
+import {NotaCorretagem} from '../model/NotaCorretagem';
+import {BigfServiceService} from '../services/bigf-service.service';
 
 @Component({
   selector: 'app-notas',
@@ -12,8 +12,8 @@ import { BigfServiceService } from '../services/bigf-service.service';
 export class NotasComponent implements OnInit {
 
 
+  notas: NotaCorretagem[];
 
-  notas: NotaCorretagem[]
   constructor(
     private bigfService: BigfServiceService,
     public afAuth: AngularFireAuth,
@@ -29,9 +29,15 @@ export class NotasComponent implements OnInit {
     });
   }
 
-  carregarDados() {
+  carregarDados(): void {
     this.bigfService.getAll(BigfServiceService.NOTAS_CORRETAGEM).subscribe(res => {
-      this.notas = res;
+      this.notas = res.sort((a, b) => {
+        if (a.dataMovimentacao === b.dataMovimentacao) {
+          return 0;
+        } else {
+          return (a.dataMovimentacao > b.dataMovimentacao) ? 1 : -1;
+        }
+      });
     });
   }
 
@@ -39,9 +45,11 @@ export class NotasComponent implements OnInit {
     this.router.navigate(['/insNotas', 'novo']);
 
   }
+
   editarNota(key) {
     this.router.navigate(['/insNotas', key]);
   }
+
   removerNota(key) {
     this.bigfService.delete(BigfServiceService.NOTAS_CORRETAGEM, key);
   }

@@ -25,12 +25,13 @@ import { PatrimonioInicialComponent } from './patrimonio-inicial/patrimonio-inic
 import { InputNumberModule } from 'primeng/inputnumber';
 import { BensDireitosComponent } from './bens-direitos/bens-direitos.component';
 import { RendimentosComponent } from './rendimentos/rendimentos.component';
-import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade/operacoes-comuns-dtrade.component';
+import { OperacoesComunsComponent } from './operacoes-comuns/operacoes-comuns.component';
 import { OperacoesFundosImobComponent } from './operacoes-fundos-imob/operacoes-fundos-imob.component';
 import { EditNotaComponent } from './edit-nota/edit-nota.component';
 import { CalendarModule } from 'primeng/calendar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe } from '@angular/common';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 
@@ -45,7 +46,7 @@ import { DatePipe } from '@angular/common';
     PatrimonioInicialComponent,
     BensDireitosComponent,
     RendimentosComponent,
-    OperacoesComunsDTradeComponent,
+    OperacoesComunsComponent,
     OperacoesFundosImobComponent,
     EditNotaComponent
   ],
@@ -62,6 +63,7 @@ import { DatePipe } from '@angular/common';
     InputNumberModule,
     InputTextModule,
     CalendarModule,
+    DropdownModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase)
 

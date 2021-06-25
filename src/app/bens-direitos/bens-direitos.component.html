@@ -15,15 +15,15 @@
     </ng-template>
     <ng-template pTemplate="body" let-bem let-i="rowIndex">
         <tr>
-            <th>{{bem.corretora}}</th>
-            <th>{{bem.ticker}}</th>
-            <th>{{bem.quantidadeInicial}}</th>
-            <th>{{bem.valorTotalInicial}}</th>
-            <th>{{bem.quantidadeFinal}}</th>
-            <th>{{bem.valorTotalFinal}}</th>
-            <th>{{bem.nomeEmpresa}}</th>
-            <th>{{bem.CNPJ}}</th>
-            <th>{{bem.tipoNoIr}}</th>
+            <th class="tx-left p-pl-1">{{bem.corretora }}</th>
+            <th class="tx-left p-pl-1">{{bem.ticker}}</th>
+            <th class="tx-right p-pl-1">{{bem.quantidadeInicial | number}}</th>
+            <th class="tx-right p-pl-1">{{bem.valorTotalInicial | currency}}</th>
+            <th class="tx-right p-pl-1">{{bem.quantidadeFinal | number }}</th>
+            <th class="tx-right p-pl-1 p-pr-2">{{bem.valorTotalFinal | currency}}</th>
+            <th class="tx-left p-pl-2">{{bem.nomeEmpresa}}</th>
+            <th class="tx-center p-pl-1">{{bem.CNPJ}}</th>
+            <th class="tx-center p-pl-1">{{bem.tipoNoIr}}</th>
         </tr>
     </ng-template>
 </p-table>

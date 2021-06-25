@@ -8,6 +8,9 @@
     <input pInputText type="text" placeholder="CNPJ" [(ngModel)]="novoAtivo.cnpj" class="p-mr-2">
     <input pInputText type="text" placeholder="Fonte pagadora" [(ngModel)]="novoAtivo.fontePagadora" class="p-mr-2">
     <input pInputText type="text" placeholder="CNPJ pagador" [(ngModel)]="novoAtivo.cnpjPagadora" class="p-mr-2">
+    <p-dropdown [options]="tipoAtivos" [(ngModel)]="novoAtivo.tipoAtivo" optionLabel="nome" optionValue="enumVal"
+        class="p-mr-2" placeholder="Selecione um tipo"></p-dropdown>
+
     <p-button class="p-mr-2" (click)='insertTicker()'>Adicionar</p-button>
     <p-button (click)="limparNovoTicker()">Limpar</p-button>
 
@@ -17,7 +20,7 @@
 
     <div>
         <p-button (click)='salvarTabela()' class="p-mr-2">Salvar</p-button>
-        <p-button (click)='restaurarTabela()' >Cancelar</p-button>
+        <p-button (click)='restaurarTabela()'>Cancelar</p-button>
     </div>
     <div class="card">
         <p-table [value]="ativos" dataKey="ticker">
@@ -29,20 +32,14 @@
                     <th>CNPJ</th>
                     <th>Fonte Pagadora</th>
                     <th>CNPJ Pagador</th>
+                    <TH>Tipo</TH>
                     <th>Remover</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-at>
                 <tr>
-                    <td pEditableColumn>
-                        <p-cellEditor>
-                            <ng-template pTemplate="input">
-                                <input pInputText type="text" [(ngModel)]="at.ticker">
-                            </ng-template>
-                            <ng-template pTemplate="output">
-                                {{at.ticker}}
-                            </ng-template>
-                        </p-cellEditor>
+                    <td>
+                        <a href='{{gerarUrlStatusInvest(at)}}'>{{at.ticker}}</a>
                     </td>
                     <td pEditableColumn>
                         <p-cellEditor>
@@ -94,6 +91,11 @@
                             </ng-template>
                         </p-cellEditor>
                     </td>
+
+                    <td>
+                        {{at.tipoAtivo}}
+                    </td>
+
                     <td>
                         <p-button (click)='removerAtivo(at.key)'>X</p-button>
                     </td>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OperacoesComunsDTradeComponent } from './operacoes-comuns-dtrade.component';
+import { OperacoesComunsComponent } from './operacoes-comuns.component';
 
 describe('OperacoesComunsDTradeComponent', () => {
-  let component: OperacoesComunsDTradeComponent;
-  let fixture: ComponentFixture<OperacoesComunsDTradeComponent>;
+  let component: OperacoesComunsComponent;
+  let fixture: ComponentFixture<OperacoesComunsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OperacoesComunsDTradeComponent ]
+      declarations: [ OperacoesComunsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OperacoesComunsDTradeComponent);
+    fixture = TestBed.createComponent(OperacoesComunsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

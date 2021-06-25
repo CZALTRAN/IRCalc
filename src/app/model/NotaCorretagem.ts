@@ -1,23 +1,23 @@
-import { AbstractModel } from "./AbstractModel";
-import { NotaCorretagemDetalhe } from "./NotaCorretagemDetalhe";
+import {AbstractModel} from './AbstractModel';
+import {NotaCorretagemDetalhe} from './NotaCorretagemDetalhe';
 
-export interface NotaCorretagem extends AbstractModel{
-    nomeCorretora:string;
-    
-    
-    totalCompra?:number;
-    totalVenda?:number;
-    
-    //totalVenda - totalCompra
-    liquidoOper?:number;
-    
-    //liquidoFinal - liquidoOper
-    totalTaxas?:number;
+export interface NotaCorretagem extends AbstractModel {
+  nomeCorretora: string;
 
-    liquidoFinal?:number;
-    coud:string;
 
-    dataMovimentacao:string;
+  totalCompra?: number;
+  totalVenda?: number;
 
-    transacoes:NotaCorretagemDetalhe[]
+  // totalVenda - totalCompra
+  liquidoOper?: number;
+
+  // líquidoFinal - liquidoOper
+  totalTaxas?: number;
+
+  liquidoFinal?: number;
+  coud: string;
+
+  dataMovimentacao: string;
+
+  transacoes: NotaCorretagemDetalhe[];
 }
